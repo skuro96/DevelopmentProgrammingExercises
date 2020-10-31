@@ -25,22 +25,31 @@ public class Kadai05_2 extends Application
 	public void start(Stage stage) throws Exception
 	{
 		Scanner scn = new Scanner(new File(fname));
-		for (int i = 0; i < 9; i++)
+
+		try
 		{
-			for (int j = 0; j < 9; j++)
+			for (int i = 0; i < 9; i++)
 			{
-				int v = scn.nextInt();
-				if (1 <= v && v <= 9)
+				for (int j = 0; j < 9; j++)
 				{
-					tf[i][j] = new TextField(String.valueOf(v));
-					tf[i][j].setEditable(false);
-					tf[i][j].setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+					int v = scn.nextInt();
+					if (1 <= v && v <= 9)
+					{
+						tf[i][j] = new TextField(String.valueOf(v));
+						tf[i][j].setEditable(false);
+						tf[i][j].setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+					}
+					else
+						tf[i][j] = new TextField();
+					tf[i][j].setMaxWidth(40);
+					tf[i][j].setFont(Font.font("MonoSpace", 20));
 				}
-				else
-					tf[i][j] = new TextField();
-				tf[i][j].setMaxWidth(40);
-				tf[i][j].setFont(Font.font("MonoSpace", 20));
 			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.exit(0);
 		}
 
 		GridPane[][] sub_gp = new GridPane[3][3];

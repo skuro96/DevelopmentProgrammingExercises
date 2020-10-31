@@ -30,25 +30,34 @@ public class Kadai05_3 extends Application
 	public void start(Stage stage) throws Exception
 	{
 		Scanner scn = new Scanner(new File(fname));
-		for (int i = 0; i < 9; i++)
-		{
-			for (int j = 0; j < 9; j++)
+
+		try
+		{	
+			for (int i = 0; i < 9; i++)
 			{
-				value[i][j] = scn.nextInt();
-				if (1 <= value[i][j] && value[i][j] <= 9)
+				for (int j = 0; j < 9; j++)
 				{
-					tf[i][j] = new TextField(String.valueOf(value[i][j]));
-					tf[i][j].setEditable(false);
-					tf[i][j].setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+					value[i][j] = scn.nextInt();
+					if (1 <= value[i][j] && value[i][j] <= 9)
+					{
+						tf[i][j] = new TextField(String.valueOf(value[i][j]));
+						tf[i][j].setEditable(false);
+						tf[i][j].setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
+					}
+					else
+					{
+						tf[i][j] = new TextField();
+						tf[i][j].setOnAction(new InputEventHandler());
+					}
+					tf[i][j].setMaxWidth(40);
+					tf[i][j].setFont(Font.font("MonoSpace", 20));
 				}
-				else
-				{
-					tf[i][j] = new TextField();
-					tf[i][j].setOnAction(new InputEventHandler());
-				}
-				tf[i][j].setMaxWidth(40);
-				tf[i][j].setFont(Font.font("MonoSpace", 20));
 			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.exit(0);
 		}
 
 		GridPane[][] sub_gp = new GridPane[3][3];
