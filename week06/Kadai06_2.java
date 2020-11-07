@@ -54,8 +54,8 @@ public class Kadai06_2 extends Application
 			{
 				ComboBox<String> cb = new ComboBox<String>();
 				ObservableList<String> ol = FXCollections.observableArrayList();
-				ArrayList<String> numList = validNums(i, j);
 
+				ArrayList<String> numList = validNums(i, j);
 				for (int s = 0; s < numList.size(); s++)
 					ol.add(numList.get(s));
 
@@ -127,6 +127,36 @@ public class Kadai06_2 extends Application
 		return (1 <= value && value <= 9);
 	}
 
+	public ArrayList<String> validNums(int x, int y)
+	{
+		ArrayList<String> numList = new ArrayList<String>();
+		int[] checkList = new int[9];
+		Arrays.fill(checkList, 0);
+
+		for (int i = 0; i < 9; i++)
+		{
+			if (isValid(value[x][i]))
+				checkList[value[x][i] - 1] = 1;
+
+			if (isValid(value[i][y]))
+				checkList[value[i][y] - 1] = 1;
+
+			int sq_x = (x / 3) * 3;
+			int sq_y = (y / 3) * 3;
+			int sq_i = sq_x + i / 3;
+			int sq_j = sq_y + i % 3;
+			if (isValid(value[sq_i][sq_j]))
+				checkList[value[sq_i][sq_j] - 1] = 1;
+		}
+
+		for (int i = 0; i < 9; i++)
+		{
+			if (checkList[i] == 0)
+				numList.add(String.valueOf(i + 1));
+		}
+		return numList;
+	}
+
 	public boolean isComplete()
 	{
 		try
@@ -181,54 +211,6 @@ public class Kadai06_2 extends Application
 		{
 			return false;
 		}
-	}
-
-	public ArrayList<String> validNums(int x, int y)
-	{
-		ArrayList<String> numList = new ArrayList<String>();
-		int[] checkList = new int[9];
-		Arrays.fill(checkList, 0);
-
-		for (int i = 0; i < 9; i++)
-		{
-			try
-			{
-				if (isValid(value[x][i]))
-					checkList[value[x][i] - 1] = 1;
-				else
-					checkList[Integer.parseInt(cb_list.get(x * 9 + i).getValue().toString()) - 1] = 1;
-			}
-			catch (Exception e) {}
-
-			try
-			{
-				if (isValid(value[i][y]))
-					checkList[value[i][y] - 1] = 1;
-				else
-					checkList[Integer.parseInt(cb_list.get(i * 9 + y).getValue().toString()) - 1] = 1;
-			}
-			catch (Exception e) {}
-
-			try
-			{
-				int sq_x = (x / 3) * 3;
-				int sq_y = (y / 3) * 3;
-				int sq_i = sq_x + i / 3;
-				int sq_j = sq_y + i % 3;
-				if (isValid(value[sq_i][sq_j]))
-					checkList[value[sq_i][sq_j] - 1] = 1;
-				else
-					checkList[Integer.parseInt(cb_list.get(sq_i * 9 + sq_j).getValue().toString()) - 1] = 1;
-			}
-			catch (Exception e) {}
-		}
-
-		for (int i = 0; i < 9; i++)
-		{
-			if (checkList[i] == 0)
-				numList.add(String.valueOf(i + 1));
-		}
-		return numList;
 	}
 
 	class SelectEventHandler implements EventHandler<ActionEvent>
