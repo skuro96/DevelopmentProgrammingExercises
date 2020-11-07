@@ -197,12 +197,20 @@ public class Kadai06_2 extends Application
 					checkList[value[x][i] - 1] = 1;
 				else
 					checkList[Integer.parseInt(cb_list.get(x * 9 + i).getValue().toString()) - 1] = 1;
+			}
+			catch (Exception e) {}
 
+			try
+			{
 				if (isValid(value[i][y]))
 					checkList[value[i][y] - 1] = 1;
 				else
 					checkList[Integer.parseInt(cb_list.get(i * 9 + y).getValue().toString()) - 1] = 1;
+			}
+			catch (Exception e) {}
 
+			try
+			{
 				int sq_x = (x / 3) * 3;
 				int sq_y = (y / 3) * 3;
 				int sq_i = sq_x + i / 3;
