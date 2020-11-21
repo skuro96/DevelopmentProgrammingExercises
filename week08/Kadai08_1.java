@@ -28,9 +28,9 @@ public class Kadai08_1 extends JPanel
 				int mid_x = width/4 + width/2*j;
 				int mid_y = height/5 + height/5*i;
 				p[i][j] = new Polygon();
-				p[i][j].addPoint(mid_x, 			mid_y - dial_y);
-				p[i][j].addPoint(mid_x - dial_x, 	mid_y);
-				p[i][j].addPoint(mid_x ,			mid_y + dial_y);
+				p[i][j].addPoint(mid_x,				mid_y - dial_y);
+				p[i][j].addPoint(mid_x - dial_x,	mid_y);
+				p[i][j].addPoint(mid_x,				mid_y + dial_y);
 				p[i][j].addPoint(mid_x + dial_x,	mid_y);
 				g.fillPolygon(p[i][j]);
 			}
